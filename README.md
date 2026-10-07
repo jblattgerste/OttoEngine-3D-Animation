@@ -7,8 +7,8 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-555555?style=for-the-badge)](LICENSE)
 
 <p align="center">
-  <img src="Media/four-strokes.gif" alt="The four strokes one after another: intake, compression, power and exhaust" width="400">
-  <img src="Media/running.gif" alt="The running engine" width="400">
+  <img src="Media/four-strokes.gif" alt="The four strokes one after another: intake, compression, power and exhaust" width="327">
+  <img src="Media/running.gif" alt="The running engine" width="327">
 </p>
 
 ## What You See
