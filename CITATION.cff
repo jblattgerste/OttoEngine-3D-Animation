@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+type: software
+title: "Otto Engine Cutaway: An Interactive Four-Stroke Engine in the Browser"
+abstract: "An interactive, animated cutaway of a single-cylinder four-stroke (Otto) petrol engine, built in Unity and published as a WebGL build. Users step through intake, compression, power and exhaust or let the engine run, and orbit around it to look into the cylinder, the ports and the valve train. All parts follow slider-crank and cam kinematics checked over a full cycle, with gas effects and engine sounds timed to the crank angle. Originally built as the engine example of the TrainAR framework."
+authors:
+  - family-names: "Blattgerste"
+    given-names: "Jonas"
+    affiliation: "Mixality Lab, University of Applied Sciences Emden/Leer"
+license: CC-BY-4.0
+repository-code: "https://github.com/jblattgerste/OttoEngine-3D-Animation"
+url: "https://jblattgerste.github.io/OttoEngine-3D-Animation/"
+keywords:
+  - four-stroke engine
+  - Otto cycle
+  - internal combustion engine
+  - cutaway
+  - technical education
+  - Unity
+  - WebGL
+version: 1.0.0
+date-released: 2026-10-07

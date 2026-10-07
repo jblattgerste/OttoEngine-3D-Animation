@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <meta name="description" content="Interactive cutaway of a four-stroke (Otto) engine: step through intake, compression, power and exhaust, or let it run.">
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #9ca1a6; }
+      #unity-canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; }
+      #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                 gap: 14px; background: #9ca1a6; color: #1f2327; transition: opacity 0.4s ease;
+                 font: 500 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; letter-spacing: 0.02em; }
+      #bar { width: min(320px, 60vw); height: 4px; border-radius: 2px; background: rgba(0, 0, 0, 0.15); overflow: hidden; }
+      #fill { width: 0; height: 100%; background: #1f2327; transition: width 0.2s ease; }
+    </style>
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="loading">
+      <div>{{{ PRODUCT_NAME }}}</div>
+      <div id="bar"><div id="fill"></div></div>
+    </div>
+    <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+    <script>
+      const loading = document.getElementById("loading");
+      const fill = document.getElementById("fill");
+      createUnityInstance(document.getElementById("unity-canvas"), {
+        arguments: [],
+#if PROGRESSIVE_ASSET_LOADING
+        primaryDataUrls: {{{ JSON.stringify(PRIMARY_DATA_FILES) }}},
+        secondaryDataUrls: {{{ JSON.stringify(SECONDARY_DATA_FILES) }}},
+#else
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+#endif
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      }, (progress) => {
+        fill.style.width = (100 * progress) + "%";
+      }).then(() => {
+        loading.style.opacity = "0";
+        setTimeout(() => loading.remove(), 400);
+      }).catch((message) => {
+        loading.textContent = message;
+      });
+    </script>
+  </body>
+</html>
